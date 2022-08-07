@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Vector3 - add example</title>
-		<style>
-			body { margin: 0; }
-		</style>
-	</head>
-	<body>
-		<script src="../js/three.js"></script>
-		<script src="./helpers.js"></script>
-		<script>
-			const scene = new THREE.Scene();
-			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-			const renderer = new THREE.WebGLRenderer();
-			renderer.setSize( window.innerWidth, window.innerHeight );
-			document.body.appendChild( renderer.domElement );
+    <head>
+        <meta charset="utf-8">
+        <title>Vector3 - add example</title>
+        <style>
+            body { margin: 0; }
+        </style>
+    </head>
+    <body>
+        <script src="../js/three.js"></script>
+        <script src="./helpers.js"></script>
+        <script>
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            document.body.appendChild( renderer.domElement );
 
             const axes = new THREE.AxesHelper(2);
             scene.add(axes);
 
-			
-			const origin = new THREE.Vector3();
+            
+            const origin = new THREE.Vector3();
             const end1 = new THREE.Vector3(1, 1, 0);
             const end2 = new THREE.Vector3(0.5, 1, 1);
-			scene.add(createLine(origin, end1));
-			scene.add(createLine(origin, end2));
+            scene.add(createLine(origin, end1));
+            scene.add(createLine(origin, end2));
 
-			scene.add(createLine(origin, end1.clone().add(end2), 0xaa0000));
+            scene.add(createLine(origin, end1.clone().add(end2), 0xaa0000));
 
 
             scene.rotation.x += 0.2;
             scene.rotation.y -= 0.2;
-			camera.position.z = 5;
-			renderer.render( scene, camera );
-		</script>
-	</body>
+            camera.position.z = 5;
+            renderer.render( scene, camera );
+        </script>
+    </body>
 </html>
 

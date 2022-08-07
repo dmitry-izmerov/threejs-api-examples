@@ -1,64 +1,64 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Vector3 - projectOnPlane example</title>
-		<style>
-			body { margin: 0; }
-		</style>
-	</head>
-	<body>
-		<script src="../js/three.js"></script>
-		<script src="./helpers.js"></script>
-		<script>
-			const scene = new THREE.Scene();
-			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    <head>
+        <meta charset="utf-8">
+        <title>Vector3 - projectOnPlane example</title>
+        <style>
+            body { margin: 0; }
+        </style>
+    </head>
+    <body>
+        <script src="../js/three.js"></script>
+        <script src="./helpers.js"></script>
+        <script>
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-			const renderer = new THREE.WebGLRenderer();
-			renderer.setSize(window.innerWidth, window.innerHeight);
-			document.body.appendChild(renderer.domElement);
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
 
             const origin = new THREE.Vector3();
             const end1 = new THREE.Vector3(0.5, 1, 1);
             const end2 = new THREE.Vector3(1, 1, 0);
-			scene.add(createLine(origin, end1));
-			scene.add(createLine(origin, end2));
-			
+            scene.add(createLine(origin, end1));
+            scene.add(createLine(origin, end2));
+            
             const axes = new THREE.AxesHelper(2);
             scene.rotation.x += 0.2;
             scene.rotation.y -= 0.2;
             scene.add(axes);
 
-			// plane
-			const yNormal = new THREE.Vector3(0, 1, 0);
-			// yNormal.applyQuaternion(scene.quaternion.clone());
-			yNormal.applyEuler(new THREE.Euler(0.2, 0.2, 0));
-			const xzPlane = new THREE.Plane(yNormal, 0);
-			const planeHelper = new THREE.PlaneHelper(xzPlane, 3, 0xaa00bb);
-			scene.add(planeHelper);
+            // plane
+            const yNormal = new THREE.Vector3(0, 1, 0);
+            // yNormal.applyQuaternion(scene.quaternion.clone());
+            yNormal.applyEuler(new THREE.Euler(0.2, 0.2, 0));
+            const xzPlane = new THREE.Plane(yNormal, 0);
+            const planeHelper = new THREE.PlaneHelper(xzPlane, 3, 0xaa00bb);
+            scene.add(planeHelper);
 
-			// projection
-			const end1OnXz = end1.clone().projectOnPlane(xzPlane.normal);
-			const end2OnXz = end2.clone().projectOnPlane(xzPlane.normal);
-			scene.add(createLine(origin, end1OnXz));
-			scene.add(createLine(origin, end2OnXz));
+            // projection
+            const end1OnXz = end1.clone().projectOnPlane(xzPlane.normal);
+            const end2OnXz = end2.clone().projectOnPlane(xzPlane.normal);
+            scene.add(createLine(origin, end1OnXz));
+            scene.add(createLine(origin, end2OnXz));
 
-			camera.position.z = 5;
-			renderer.render( scene, camera );
-			
-			console.log('angle = ', THREE.MathUtils.radToDeg(end1OnXz.angleTo(end2OnXz)));
+            camera.position.z = 5;
+            renderer.render( scene, camera );
+            
+            console.log('angle = ', THREE.MathUtils.radToDeg(end1OnXz.angleTo(end2OnXz)));
 
-			window['scene'] = scene;
-			window['plane'] = xzPlane;
+            window['scene'] = scene;
+            window['plane'] = xzPlane;
 
-			function animate() {
-				requestAnimationFrame( animate );
+            function animate() {
+                requestAnimationFrame( animate );
 
-				renderer.render( scene, camera );
-			};
+                renderer.render( scene, camera );
+            };
 
-			animate();
-		</script>
-	</body>
+            animate();
+        </script>
+    </body>
 </html>
 

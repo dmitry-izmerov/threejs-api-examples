@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Vector3 - dot example</title>
-		<style>
-			body { margin: 0; }
-		</style>
-	</head>
-	<body>
-		<script src="../js/three.js"></script>
-		<script src="./helpers.js"></script>
-		<script>
-			const scene = new THREE.Scene();
-			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    <head>
+        <meta charset="utf-8">
+        <title>Vector3 - dot example</title>
+        <style>
+            body { margin: 0; }
+        </style>
+    </head>
+    <body>
+        <script src="../js/three.js"></script>
+        <script src="./helpers.js"></script>
+        <script>
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-			const renderer = new THREE.WebGLRenderer();
-			renderer.setSize( window.innerWidth, window.innerHeight );
-			document.body.appendChild( renderer.domElement );
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            document.body.appendChild( renderer.domElement );
 
             const origin = new THREE.Vector3();
             const end1 = new THREE.Vector3(1, 1, 0);
             const end2 = new THREE.Vector3(0.5, 1, 1);
-			scene.add(createLine(origin, end1));
-			scene.add(createLine(origin, end2));
+            scene.add(createLine(origin, end1));
+            scene.add(createLine(origin, end2));
 
             const axes = new THREE.AxesHelper(2);
             scene.rotation.x += 0.2;
             scene.rotation.y -= 0.2;
             scene.add(axes);
 
-			camera.position.z = 5;
-			renderer.render( scene, camera );
-			
-			console.log('dot == cos(angle) for normalized vectors', end1.clone().normalize().dot(end2.clone().normalize())); // Math.acos(dot result) * 180 / Math.PI == 45
-			console.log('angle =', THREE.MathUtils.radToDeg(end1.angleTo(end2)));
-		</script>
-	</body>
+            camera.position.z = 5;
+            renderer.render( scene, camera );
+            
+            console.log('dot == cos(angle) for normalized vectors', end1.clone().normalize().dot(end2.clone().normalize())); // Math.acos(dot result) * 180 / Math.PI == 45
+            console.log('angle =', THREE.MathUtils.radToDeg(end1.angleTo(end2)));
+        </script>
+    </body>
 </html>
 

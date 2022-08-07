@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Vector basic example</title>
-		<style>
-			body { margin: 0; }
-		</style>
-	</head>
-	<body>
-		<script src="../js/three.js"></script>
-		<script src="./helpers.js"></script>
-		<script>
-			const scene = new THREE.Scene();
-			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    <head>
+        <meta charset="utf-8">
+        <title>Vector basic example</title>
+        <style>
+            body { margin: 0; }
+        </style>
+    </head>
+    <body>
+        <script src="../js/three.js"></script>
+        <script src="./helpers.js"></script>
+        <script>
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-			const renderer = new THREE.WebGLRenderer();
-			renderer.setSize( window.innerWidth, window.innerHeight );
-			document.body.appendChild( renderer.domElement );
+            const renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            document.body.appendChild( renderer.domElement );
 
             const origin = new THREE.Vector3();
             const end = new THREE.Vector3(1, 1, 0);
 
-			const geometry = new THREE.BufferGeometry().setFromPoints([origin, end]);
-			const material = new THREE.LineBasicMaterial( { color: 0xffff00 } );
-			const line = new THREE.Line( geometry, material );
-			scene.add(line);
+            const geometry = new THREE.BufferGeometry().setFromPoints([origin, end]);
+            const material = new THREE.LineBasicMaterial( { color: 0xffff00 } );
+            const line = new THREE.Line( geometry, material );
+            scene.add(line);
 
             const axes = new THREE.AxesHelper(2);
             axes.rotation.x += 0.2;
             axes.rotation.y -= 0.2;
             scene.add(axes);
 
-			camera.position.z = 5;
-			renderer.render( scene, camera );
+            camera.position.z = 5;
+            renderer.render( scene, camera );
 
-			// function animate() {
-			// 	requestAnimationFrame( animate );
+            // function animate() {
+            // 	requestAnimationFrame( animate );
 
-			// 	renderer.render( scene, camera );
-			// };
+            // 	renderer.render( scene, camera );
+            // };
 
-			// animate();
-		</script>
-	</body>
+            // animate();
+        </script>
+    </body>
 </html>
 
